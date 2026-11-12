@@ -1,0 +1,4 @@
+node_modules
+*.sqlite
+.git
+prev_work

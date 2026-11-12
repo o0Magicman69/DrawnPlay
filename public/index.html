@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Use the modern HTML document format. -->
+<html lang="en">
+<head>
+    <!-- Define the character set used by the page. -->
+    <meta charset="UTF-8" />
+    <!-- Make the board scale correctly on phones and tablets. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <!-- Make the board installable as a home-screen app. -->
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#b8703d" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Netball" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <!-- Text shown in the browser tab. -->
+    <title>Netball</title>
+    <!-- Load the page's visual styles. -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- The board workspace fills the viewport; title and controls sit above the court. -->
+    <main id="board-wrapper">
+        <!-- Main page heading shown as an overlay on the board workspace. -->
+        <h1>🏐 Netball </h1>
+        <!-- Save and load actions remain available without shrinking the court. -->
+        <div id="controls">
+            <button id="add-ball" type="button">Add Ball</button>
+            <button id="toggle-red" type="button">Red Team: On</button>
+            <button id="toggle-blue" type="button">Blue Team: On</button>
+            <button id="reset-board" type="button">Reset Board</button>
+            <button id="toggle-playback" type="button" hidden>Play</button>
+            <button id="restart-playback" type="button" hidden>Restart</button>
+            <button id="save-video" type="button" hidden>Saved</button>
+            <button id="save-play" type="button">Save Play</button>
+            <button id="load-play" type="button">Load Play</button>
+            <input id="play-file" type="file" accept="application/json,.json" hidden />
+        </div>
+        <!-- JavaScript draws the court and player markers inside this canvas. -->
+        <canvas id="court" width="700" height="500"></canvas>
+    </main>
+    <!-- Saved plays stored in the database are listed here for loading or deleting. -->
+    <div id="plays-modal" hidden>
+        <div id="plays-panel">
+            <h2>Saved Plays</h2>
+            <div id="save-row">
+                <input id="play-name" type="text" maxlength="60" placeholder="Name the current board to save it" />
+                <button id="save-current" type="button">Save</button>
+            </div>
+            <ul id="plays-list"></ul>
+            <div id="plays-actions">
+                <button id="open-file" type="button">Open File…</button>
+                <button id="download-file" type="button">Download File</button>
+                <button id="close-plays" type="button">Close</button>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript writes movement-validation messages into this element. -->
+    <div id="status"></div>
+    <!-- Load the interactive board after the page elements exist. -->
+    <script src="playback-paths.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
